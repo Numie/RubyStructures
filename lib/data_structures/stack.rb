@@ -16,6 +16,7 @@ class Stack
   end
 
   def ==(other_stack)
+    return false unless other_stack.is_a?(Stack)
     @store == other_stack.send(:store)
   end
 
@@ -25,6 +26,7 @@ class Stack
 
   def push(el)
     @store.push(el)
+    self
   end
 
   def <<(el)
