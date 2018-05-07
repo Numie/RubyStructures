@@ -16,6 +16,7 @@ class Queue
   end
 
   def ==(other_queue)
+    return false unless other_queue.is_a?(Queue)
     @store == other_queue.send(:store)
   end
 
@@ -25,6 +26,7 @@ class Queue
 
   def enqueue(el)
     @store.push(el)
+    self
   end
 
   def <<(el)
