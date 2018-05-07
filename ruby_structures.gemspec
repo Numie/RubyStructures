@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-  spec.name        = 'numie_structures'
+  spec.name        = 'ruby_structures'
   spec.version     = '0.0.0'
   spec.date        = '2018-05-07'
   spec.summary     = "Ruby Data Structures"
@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Jason Numeroff"]
   spec.email       = 'jnumeroff@hotmail.com'
   spec.files       = [
-                      "lib/numie_structures.rb",
+                      "lib/ruby_structures.rb",
                       "lib/data_structures/stack.rb",
                       "lib/data_structures/queue.rb",
                       "lib/data_structures/linked_list.rb"
