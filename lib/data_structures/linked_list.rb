@@ -67,12 +67,12 @@ class LinkedList
   end
 
   def find(val)
-    self.each { |n| return node if n.send(:val) == val }
+    self.each { |node| return node if node.send(:val) == val }
     nil
   end
 
   def include?(val)
-    self.each { |n| return true if n.send(:val) == val }
+    self.each { |node| return true if node.send(:val) == val }
     false
   end
 
