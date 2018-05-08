@@ -71,7 +71,7 @@ class LinkedList
     nil
   end
 
-  def include(val)
+  def include?(val)
     self.each { |n| return true if n.send(:val) == val }
     false
   end
