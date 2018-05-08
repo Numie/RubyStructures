@@ -1,7 +1,7 @@
 class LinkedList
   include Enumerable
 
-  def initialize(head=nil, tail=nil)
+  def initialize
     @head = Node.new
     @tail = Node.new
     @head.send(:next=, @tail)
@@ -15,14 +15,14 @@ class LinkedList
   def to_s
     return "-" if self.empty?
 
-    vals = self.map { |n| n.send(:val) }
+    vals = self.to_a { |n| n.send(:val) }
     vals.join(' -> ')
   end
 
   def inspect
     return "-" if self.empty?
 
-    vals = self.map { |n| n.send(:val) }
+    vals = self.to_a { |n| n.send(:val) }
     vals.join(' -> ')
   end
 
@@ -107,6 +107,20 @@ class LinkedList
     end
 
     self
+  end
+
+  def map(&prc)
+    new_linked_list = LinkedList.new
+    current_node = @head.send(:next)
+    return new_linked_list if current_node.nil?
+
+    while current_node != @tail
+      val = prc.call(current_node)
+      new_linked_list.append(val)
+      current_node = current_node.send(:next)
+    end
+
+    new_linked_list
   end
 end
 

@@ -213,4 +213,24 @@ describe LinkedList do
       expect(linked_list.each(&prc)).to eq(linked_list)
     end
   end
+
+  describe '#map' do
+    before(:each) do
+      linked_list.append(1)
+      linked_list.append('apple')
+      linked_list.append(2)
+    end
+    it 'yields each Node to a block' do
+      node1 = linked_list.first
+      node2 = node1.send(:next)
+      node3 = node2.send(:next)
+      expect{ |prc| linked_list.map(&prc) }.to yield_successive_args(node1, node2, node3)
+    end
+    it 'returns a Linked List' do
+      expect(linked_list.map(&prc)).to be_a(LinkedList)
+    end
+    it 'does not return the original Linked List' do
+      expect(linked_list.map(&prc)).to_not be(linked_list)
+    end
+  end
 end
