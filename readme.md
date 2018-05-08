@@ -34,7 +34,7 @@ A Stack is a LIFO (last in, first out) container.
 ### Stack API
 
 1. `to_a`
-1. `to-s`
+1. `to_s`
 1. `inspect`
 1. `==`
 1. `empty?`
@@ -52,7 +52,7 @@ A Queue is a FIFO (first in, first out) container.
 ### Queue API
 
 1. `to_a`
-1. `to-s`
+1. `to_s`
 1. `inspect`
 1. `==`
 1. `empty?`

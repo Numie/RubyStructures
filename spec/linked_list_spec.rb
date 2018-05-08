@@ -3,7 +3,7 @@ require 'data_structures/linked_list'
 
 describe LinkedList do
   let(:linked_list) { LinkedList.new }
-  let(:node) { double('node') }
+  let(:node) { double('linked_list_node') }
   let(:prc) { Proc.new { |n| n } }
 
   describe '#to_a' do
@@ -93,7 +93,7 @@ describe LinkedList do
       expect(linked_list.last.send(:val)).to eq(1)
     end
     it 'returns the appended Node' do
-      expect(linked_list.append(2)).to be_a(Node)
+      expect(linked_list.append(2)).to be_a(LinkedListNode)
     end
   end
 
@@ -107,7 +107,7 @@ describe LinkedList do
       expect(linked_list.first.send(:val)).to eq(1)
     end
     it 'returns the prepended Node' do
-      expect(linked_list.prepend(2)).to be_a(Node)
+      expect(linked_list.prepend(2)).to be_a(LinkedListNode)
     end
   end
 
@@ -126,7 +126,7 @@ describe LinkedList do
 
     context 'when a value does exist in a Linked List' do
       it 'returns a Node' do
-        expect(linked_list.find(2)).to be_a(Node)
+        expect(linked_list.find(2)).to be_a(LinkedListNode)
       end
       it 'returns the Node with the correct value' do
         found_node = linked_list.find(2)

@@ -2,8 +2,8 @@ class LinkedList
   include Enumerable
 
   def initialize
-    @head = Node.new
-    @tail = Node.new
+    @head = LinkedListNode.new
+    @tail = LinkedListNode.new
     @head.send(:next=, @tail)
     @tail.send(:prev=, @head)
   end
@@ -41,7 +41,7 @@ class LinkedList
   end
 
   def append(val=nil)
-    node = Node.new(val)
+    node = LinkedListNode.new(val)
     last = @tail.send(:prev)
 
     last.send(:next=, node)
@@ -54,7 +54,7 @@ class LinkedList
   end
 
   def prepend(val=nil)
-    node = Node.new(val)
+    node = LinkedListNode.new(val)
     first = @head.send(:next)
 
     first.send(:prev=, node)
@@ -124,7 +124,7 @@ class LinkedList
   end
 end
 
-class Node
+class LinkedListNode
   def initialize(val=nil, next_node=nil, prev_node=nil)
     @val = val
     @next = next_node
