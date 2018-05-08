@@ -13,14 +13,14 @@ class LinkedList
   end
 
   def to_s
-    return "LinkedList is empty" if self.empty?
+    return "-" if self.empty?
 
     vals = self.map { |n| n.send(:val) }
     vals.join(' -> ')
   end
 
   def inspect
-    return "LinkedList is empty" if self.empty?
+    return "-" if self.empty?
 
     vals = self.map { |n| n.send(:val) }
     vals.join(' -> ')
