@@ -25,6 +25,7 @@ require 'ruby_structures'
 * Queue
 * Linked List
 * Binary Tree
+* LRU Cache
 
 More to come...
 
@@ -95,3 +96,19 @@ A Binary Tree is a tree in which each Node may have a maximum of two children.
 1. `::from_array`
 1. `#depth_first_search`
 1. `#breadth_first_search`
+
+## LRU Cache
+
+An LRU Cache is an ordered container that combines a Hash and a Linked List to provide addition, deleting and inclusion methods in constant time.
+
+### LRU Cache API
+
+1. `#to_a`
+1. `#empty?`
+1. `#first`
+1. `#last`
+1. `#append(key, val)`
+1. `#prepend(key, val)`
+1. `#remove(key)`
+1. `#find(key)`
+1. `#include?(key)`
