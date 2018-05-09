@@ -51,4 +51,40 @@ describe BinaryTree do
       end
     end
   end
+
+  describe '#breadth_first_search' do
+    context 'when neither a target nor a proc is passed' do
+      it 'raises an error' do
+        expect{ binary_tree.breadth_first_search }.to raise_error
+      end
+    end
+
+    context 'when both a target and a proc are passed' do
+      let(:prc) { Proc.new { |node| node.send(:val) == 1 } }
+      it 'raises an error' do
+        expect{ binary_tree.breadth_first_search(1, &prc) }.to raise_error
+      end
+    end
+
+    context 'when a target is passed that does not exist in the tree' do
+      it 'returns nil' do
+        expect(binary_tree.breadth_first_search(8)).to eq(nil)
+      end
+    end
+
+    context 'when a target is passed that does exist in the tree' do
+      let(:prc) { Proc.new { |node| node.send(:val) == 3 || node.send(:val) == 4 } }
+      it 'returns the correct Node' do
+        node = binary_tree.breadth_first_search(&prc)
+        expect(node.send(:val)).to eq(3)
+      end
+      it 'yields Nodes in the correct order' do
+        node1 = binary_tree.send(:head)
+        node2, node3 = node1.send(:children).first, node1.send(:children).last
+        node4, node5 = node2.send(:children).first, node2.send(:children).last
+        node6, node7 = node3.send(:children).first, node3.send(:children).last
+        expect{ |prc| binary_tree.breadth_first_search(&prc) }.to yield_successive_args(node1, node2, node3, node4, node5, node6, node7)
+      end
+    end
+  end
 end

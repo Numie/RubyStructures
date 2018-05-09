@@ -34,6 +34,20 @@ class BinaryTree
     @head.send(:depth_first_search, &prc)
   end
 
+  def breadth_first_search(target=nil, &prc)
+    raise ArgumentError.new('Must pass either a target value or a block') unless (target || prc) && !(target && prc)
+    prc ||= Proc.new { |node| node.send(:val) == target }
+
+    nodes = [@head]
+    until nodes.empty?
+      node = nodes.shift
+      return node if prc.call(node)
+      nodes.concat(node.send(:children))
+    end
+
+    nil
+  end
+
   private
 
   attr_accessor :head
