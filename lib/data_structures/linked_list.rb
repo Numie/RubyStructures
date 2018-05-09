@@ -132,11 +132,11 @@ class LinkedListNode
   end
 
   def to_s
-    val
+    @val
   end
 
   def inspect
-    val
+    @val
   end
 
   private
