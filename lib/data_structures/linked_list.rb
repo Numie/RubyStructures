@@ -40,8 +40,8 @@ class LinkedList
     last == @head ? nil : last
   end
 
-  def append(val=nil)
-    node = LinkedListNode.new(val)
+  def append(key=nil, val=nil)
+    node = LinkedListNode.new(key, val)
     last = @tail.send(:prev)
 
     last.send(:next=, node)
@@ -53,8 +53,8 @@ class LinkedList
     node
   end
 
-  def prepend(val=nil)
-    node = LinkedListNode.new(val)
+  def prepend(key=nil, val=nil)
+    node = LinkedListNode.new(key, val)
     first = @head.send(:next)
 
     first.send(:prev=, node)
@@ -66,18 +66,28 @@ class LinkedList
     node
   end
 
-  def find(val)
+  def find_by_key(key)
+    self.each { |node| return node if node.send(:key) == key }
+    nil
+  end
+
+  def find_by_val(val)
     self.each { |node| return node if node.send(:val) == val }
     nil
   end
 
-  def include?(val)
+  def include_key?(key)
+    self.each { |node| return true if node.send(:key) == key }
+    false
+  end
+
+  def include_val?(val)
     self.each { |node| return true if node.send(:val) == val }
     false
   end
 
-  def remove(val)
-    node = self.find(val)
+  def remove(key)
+    node = self.find_by_key(key)
     return nil if node.nil?
 
     prev_node = node.send(:prev)
@@ -89,9 +99,9 @@ class LinkedList
     node
   end
 
-  def update(old_val, new_val)
-    node = self.find(old_val)
-    raise ArgumentError.new("Couldn't find Node with value=#{old_val}") if node.nil?
+  def update(key, new_val)
+    node = self.find_by_key(key)
+    raise ArgumentError.new("Couldn't find Node with key=#{key}") if node.nil?
 
     node.send(:val=, new_val)
     node
@@ -108,38 +118,25 @@ class LinkedList
 
     self
   end
-
-  def map(&prc)
-    new_linked_list = LinkedList.new
-    current_node = @head.send(:next)
-    return new_linked_list if current_node.nil?
-
-    while current_node != @tail
-      val = prc.call(current_node)
-      new_linked_list.append(val)
-      current_node = current_node.send(:next)
-    end
-
-    new_linked_list
-  end
 end
 
 class LinkedListNode
-  def initialize(val=nil, next_node=nil, prev_node=nil)
+  def initialize(key=nil, val=nil, next_node=nil, prev_node=nil)
+    @key = key
     @val = val
     @next = next_node
     @prev = prev_node
   end
 
   def to_s
-    val
+    @val
   end
 
   def inspect
-    val
+    @val
   end
 
   private
 
-  attr_accessor :val, :next, :prev
+  attr_accessor :key, :val, :next, :prev
 end

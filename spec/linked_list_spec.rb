@@ -8,9 +8,9 @@ describe LinkedList do
 
   describe '#to_a' do
     before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
+      linked_list.append(1, 1)
+      linked_list.append(2, 'apple')
+      linked_list.append(3, 2)
     end
 
     it 'converts a Linked List to an array' do
@@ -27,9 +27,9 @@ describe LinkedList do
 
     context 'when Linked List is not empty' do
       before(:each) do
-        linked_list.append(1)
-        linked_list.append('apple')
-        linked_list.append(2)
+        linked_list.append(1, 1)
+        linked_list.append(2, 'apple')
+        linked_list.append(3, 2)
       end
 
       it 'prints each Node in the Linked List' do
@@ -85,113 +85,113 @@ describe LinkedList do
 
   describe '#append' do
     it 'includes the appended value' do
-      linked_list.append('apple')
-      expect(linked_list.include?('apple')).to eq(true)
+      linked_list.append(1, 'apple')
+      expect(linked_list.include_val?('apple')).to eq(true)
     end
     it 'appends a Node to the end of the Linked List' do
-      linked_list.append(1)
+      linked_list.append(1, 1)
       expect(linked_list.last.send(:val)).to eq(1)
     end
     it 'returns the appended Node' do
-      expect(linked_list.append(2)).to be_a(LinkedListNode)
+      expect(linked_list.append(1, 2)).to be_a(LinkedListNode)
     end
   end
 
   describe '#prepend' do
     it 'includes the prepended value' do
-      linked_list.prepend('apple')
-      expect(linked_list.include?('apple')).to eq(true)
+      linked_list.prepend(1, 'apple')
+      expect(linked_list.include_val?('apple')).to eq(true)
     end
     it 'appends a Node to the start of the Linked List' do
-      linked_list.prepend(1)
+      linked_list.prepend(1, 1)
       expect(linked_list.first.send(:val)).to eq(1)
     end
     it 'returns the prepended Node' do
-      expect(linked_list.prepend(2)).to be_a(LinkedListNode)
+      expect(linked_list.prepend(1, 2)).to be_a(LinkedListNode)
     end
   end
 
-  describe '#find' do
+  describe '#find_by_val' do
     before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
+      linked_list.append(1, 1)
+      linked_list.append(2, 'apple')
+      linked_list.append(3, 2)
     end
 
     context 'when a value does not exist in a Linked List' do
       it 'returns nil' do
-        expect(linked_list.find('orange')).to eq(nil)
+        expect(linked_list.find_by_val('orange')).to eq(nil)
       end
     end
 
     context 'when a value does exist in a Linked List' do
       it 'returns a Node' do
-        expect(linked_list.find(2)).to be_a(LinkedListNode)
+        expect(linked_list.find_by_val(2)).to be_a(LinkedListNode)
       end
       it 'returns the Node with the correct value' do
-        found_node = linked_list.find(2)
+        found_node = linked_list.find_by_val(2)
         expect(found_node.instance_variable_get(:@val)).to eq(2)
       end
     end
   end
 
-  describe '#include?' do
+  describe '#include_val?' do
     context 'when a Linked List does not include a value' do
       it 'returns false' do
-        expect(linked_list.include?(1)).to eq(false)
+        expect(linked_list.include_val?(1)).to eq(false)
       end
     end
 
     context 'when a Linked List does include a value' do
       it 'returns true' do
-        linked_list.append(1)
-        expect(linked_list.include?(1)).to eq(true)
+        linked_list.append(1, 1)
+        expect(linked_list.include_val?(1)).to eq(true)
       end
     end
   end
 
   describe '#update' do
     before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
+      linked_list.append(1, 1)
+      linked_list.append(2, 'apple')
+      linked_list.append(3, 2)
     end
 
     context 'when a Linked List does not include an old value' do
       it 'raises an error' do
-        expect{ linked_list.update(3, 'orange') }.to raise_error
+        expect{ linked_list.update(4, 'orange') }.to raise_error
       end
     end
 
     context 'when a Linked List does include an old value' do
       it 'updates the value' do
-        linked_list.update('apple', 'orange')
-        expect(linked_list.include?('apple')).to eq(false)
-        expect(linked_list.include?('orange')).to eq(true)
+        linked_list.update(2, 'orange')
+        expect(linked_list.include_val?('apple')).to eq(false)
+        expect(linked_list.include_val?('orange')).to eq(true)
       end
     end
   end
 
   describe '#remove' do
     before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
+      linked_list.append(1, 1)
+      linked_list.append(2, 'apple')
+      linked_list.append(3, 2)
     end
 
     context 'when a Linked List does not include a value' do
       it 'returns nil' do
-        expect(linked_list.remove('orange')).to eq(nil)
+        expect(linked_list.remove(4)).to eq(nil)
       end
     end
 
     context 'when a Linked List does include a value' do
       it 'removes the value' do
-        linked_list.remove('apple')
-        expect(linked_list.include?('apple')).to eq(false)
+        linked_list.remove(2)
+        expect(linked_list.include_val?('apple')).to eq(false)
       end
       it 'returns the removed Node' do
-        returned_node = linked_list.remove('apple')
+        returned_node = linked_list.remove(2)
         expect(returned_node.instance_variable_get(:@val)).to eq('apple')
       end
     end
@@ -199,9 +199,9 @@ describe LinkedList do
 
   describe '#each' do
     before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
+      linked_list.append(1, 1)
+      linked_list.append(2, 'apple')
+      linked_list.append(3, 2)
     end
     it 'yields each Node to a block' do
       node1 = linked_list.first
@@ -211,26 +211,6 @@ describe LinkedList do
     end
     it 'returns the Linked List' do
       expect(linked_list.each(&prc)).to eq(linked_list)
-    end
-  end
-
-  describe '#map' do
-    before(:each) do
-      linked_list.append(1)
-      linked_list.append('apple')
-      linked_list.append(2)
-    end
-    it 'yields each Node to a block' do
-      node1 = linked_list.first
-      node2 = node1.send(:next)
-      node3 = node2.send(:next)
-      expect{ |prc| linked_list.map(&prc) }.to yield_successive_args(node1, node2, node3)
-    end
-    it 'returns a Linked List' do
-      expect(linked_list.map(&prc)).to be_a(LinkedList)
-    end
-    it 'does not return the original Linked List' do
-      expect(linked_list.map(&prc)).to_not be(linked_list)
     end
   end
 end

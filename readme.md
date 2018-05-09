@@ -76,14 +76,15 @@ A Linked List is an ordered collection of items, or nodes, where the ordering is
 1. `##empty?`
 1. `##first`
 1. `##last`
-1. `##append(val)`
-1. `##prepend(val)`
-1. `##find(val)`
-1. `##include?(val)`
-1. `##remove(val)`
-1. `##update(val)`
+1. `##append(key, val)`
+1. `##prepend(key, val)`
+1. `##find_by_key(key)`
+1. `##find_by_val(val)`
+1. `##include_key?(key)`
+1. `##include_val?(val)`
+1. `##remove(key)`
+1. `##update(key, new_val)`
 1. `##each(&prc)`
-1. `##map(&prc)`
 
 ## Binary Tree
 
