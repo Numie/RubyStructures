@@ -44,9 +44,9 @@ describe BinaryTree do
       end
       it 'yields Nodes in the correct order' do
         node1 = binary_tree.send(:head)
-        node2, node3 = node1.send(:children).first, node1.send(:children).last
-        node4, node5 = node2.send(:children).first, node2.send(:children).last
-        node6, node7 = node3.send(:children).first, node3.send(:children).last
+        node2, node3 = node1.send(:left_child), node1.send(:right_child)
+        node4, node5 = node2.send(:left_child), node2.send(:right_child)
+        node6, node7 = node3.send(:left_child), node3.send(:right_child)
         expect{ |prc| binary_tree.depth_first_search(&prc) }.to yield_successive_args(node1, node2, node4, node5, node3, node6, node7)
       end
     end
@@ -80,9 +80,9 @@ describe BinaryTree do
       end
       it 'yields Nodes in the correct order' do
         node1 = binary_tree.send(:head)
-        node2, node3 = node1.send(:children).first, node1.send(:children).last
-        node4, node5 = node2.send(:children).first, node2.send(:children).last
-        node6, node7 = node3.send(:children).first, node3.send(:children).last
+        node2, node3 = node1.send(:left_child), node1.send(:right_child)
+        node4, node5 = node2.send(:left_child), node2.send(:right_child)
+        node6, node7 = node3.send(:left_child), node3.send(:right_child)
         expect{ |prc| binary_tree.breadth_first_search(&prc) }.to yield_successive_args(node1, node2, node3, node4, node5, node6, node7)
       end
     end

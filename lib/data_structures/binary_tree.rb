@@ -13,9 +13,9 @@ class BinaryTree
       node = BinaryTreeNode.new(el, current_node)
       node_arr << node
       binary_tree.send(:leaves) << node
-      current_node.send(:children) << node
+      current_node.send(:left_child).nil? ? current_node.send(:left_child=, node) : current_node.send(:right_child=, node)
       binary_tree.send(:leaves).delete(current_node)
-      current_node = node_arr.shift if current_node.send(:children).length == 2
+      current_node = node_arr.shift if current_node.send(:right_child)
     end
 
     binary_tree
@@ -41,8 +41,9 @@ class BinaryTree
     nodes = [@head]
     until nodes.empty?
       node = nodes.shift
+      next if node.nil?
       return node if prc.call(node)
-      nodes.concat(node.send(:children))
+      nodes.concat([node.send(:left_child), node.send(:right_child)])
     end
 
     nil
@@ -55,10 +56,11 @@ class BinaryTree
 end
 
 class BinaryTreeNode
-  def initialize(val=nil, parent=nil, children=[])
+  def initialize(val=nil, parent=nil, left_child=nil, right_child=nil)
     @val = val
     @parent = parent
-    @children = children
+    @left_child = left_child
+    @right_child = right_child
   end
 
   def to_s
@@ -74,7 +76,8 @@ class BinaryTreeNode
   def depth_first_search(&prc)
     return self if prc.call(self)
 
-    @children.each do |child|
+    [@left_child, @right_child].each do |child|
+      next if child.nil?
       result = child.send(:depth_first_search, &prc)
       return result unless result.nil?
     end
@@ -82,5 +85,5 @@ class BinaryTreeNode
     nil
   end
 
-  attr_accessor :val, :parent, :children
+  attr_accessor :val, :parent, :left_child, :right_child
 end

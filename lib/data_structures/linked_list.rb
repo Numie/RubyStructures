@@ -16,14 +16,14 @@ class LinkedList
     return "-" if self.empty?
 
     vals = self.to_a { |n| n.send(:val) }
-    vals.join(' -> ')
+    vals.join(' <=> ')
   end
 
   def inspect
     return "-" if self.empty?
 
     vals = self.to_a { |n| n.send(:val) }
-    vals.join(' -> ')
+    vals.join(' <=> ')
   end
 
   def empty?
@@ -132,11 +132,11 @@ class LinkedListNode
   end
 
   def to_s
-    @val
+    val
   end
 
   def inspect
-    @val
+    val
   end
 
   private

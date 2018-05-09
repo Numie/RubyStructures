@@ -33,7 +33,7 @@ describe LinkedList do
       end
 
       it 'prints each Node in the Linked List' do
-        expect(linked_list.inspect).to eq('1 -> apple -> 2')
+        expect(linked_list.inspect).to eq('1 <=> apple <=> 2')
       end
     end
   end
