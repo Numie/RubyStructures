@@ -65,12 +65,30 @@ class LRUCache
   def add_after_key(ref_key, key, val)
     node = @linked_list.add_after_key(ref_key, key, val)
     @hash[key] = node
+
+    if @size == @max_size
+      first_node_key = @linked_list.first.send(:key)
+      @linked_list.remove(first_node_key)
+      @hash.delete(first_node_key)
+    else
+      @size += 1
+    end
+
     node
   end
 
   def add_before_key(ref_key, key, val)
     node = @linked_list.add_before_key(ref_key, key, val)
     @hash[key] = node
+
+    if @size == @max_size
+      last_node_key = @linked_list.last.send(:key)
+      @linked_list.remove(last_node_key)
+      @hash.delete(last_node_key)
+    else
+      @size += 1
+    end
+
     node
   end
 

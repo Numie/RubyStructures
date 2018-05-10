@@ -147,6 +147,24 @@ describe LRUCache do
         expect(lru_cache.add_after_key(3, 4, 'orange').send(:val)).to eq('orange')
       end
     end
+
+    context 'when an LRU Cache size is less than its max size' do
+      it 'increases the size of the cache' do
+        empty_lru_cache.append(1, 'apple')
+        empty_lru_cache.add_after_key(1, 2, 'orange')
+        expect(empty_lru_cache.send(:size)).to eq(2)
+      end
+    end
+
+    context 'when an LRU Cache size is at its max size' do
+      before(:each) { lru_cache.add_after_key(3, 4, 'orange') }
+      it 'removes the first Node of the cache' do
+        expect(lru_cache.first.send(:val)).to eq('apple')
+      end
+      it 'maintains its size' do
+        expect(lru_cache.send(:size)).to eq(3)
+      end
+    end
   end
 
   describe '#add_before_key' do
@@ -163,6 +181,24 @@ describe LRUCache do
       end
       it 'returns the added Node' do
         expect(lru_cache.add_before_key(3, 4, 'orange').send(:val)).to eq('orange')
+      end
+    end
+
+    context 'when an LRU Cache size is less than its max size' do
+      it 'increases the size of the cache' do
+        empty_lru_cache.append(1, 'apple')
+        empty_lru_cache.add_before_key(1, 2, 'orange')
+        expect(empty_lru_cache.send(:size)).to eq(2)
+      end
+    end
+
+    context 'when an LRU Cache size is at its max size' do
+      before(:each) { lru_cache.add_before_key(1, 4, 'orange') }
+      it 'removes the last Node of the cache' do
+        expect(lru_cache.last.send(:val)).to eq('apple')
+      end
+      it 'maintains its size' do
+        expect(lru_cache.send(:size)).to eq(3)
       end
     end
   end
