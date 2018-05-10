@@ -36,12 +36,12 @@ class LRUCache
     node = @linked_list.append(key, val)
     @hash[key] = node
 
-    @size += 1
-    if @size > @max_size
+    if @size == @max_size
       first_node_key = @linked_list.first.send(:key)
       @linked_list.remove(first_node_key)
       @hash.delete(first_node_key)
-      @size -= 1
+    else
+      @size += 1
     end
 
     node
@@ -51,12 +51,12 @@ class LRUCache
     node = @linked_list.prepend(key, val)
     @hash[key] = node
 
-    @size += 1
-    if @size > @max_size
+    if @size == @max_size
       last_node_key = @linked_list.last.send(:key)
       @linked_list.remove(last_node_key)
       @hash.delete(last_node_key)
-      @size -= 1
+    else
+      @size += 1
     end
 
     node

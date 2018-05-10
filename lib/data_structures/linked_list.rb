@@ -9,7 +9,7 @@ class LinkedList
   end
 
   def to_a
-    self.reduce([]) {|arr, n| arr << n.send(:val)}
+    self.reduce([]) { |arr, n| arr << n.send(:val) }
   end
 
   def to_s
@@ -62,6 +62,38 @@ class LinkedList
 
     node.send(:prev=, @head)
     node.send(:next=, first)
+
+    node
+  end
+
+  def add_after_key(ref_key, key, val)
+    ref_node = self.find_by_key(ref_key)
+    raise ArgumentError.new("No Node found with key=#{ref_key}") if ref_node.nil?
+
+    node = LinkedListNode.new(key, val)
+    next_node = ref_node.send(:next)
+
+    node.send(:next=, next_node)
+    node.send(:prev=, ref_node)
+
+    ref_node.send(:next=, node)
+    next_node.send(:prev=, node)
+
+    node
+  end
+
+  def add_before_key(ref_key, key, val)
+    ref_node = self.find_by_key(ref_key)
+    raise ArgumentError.new("No Node found with key=#{ref_key}") if ref_node.nil?
+
+    node = LinkedListNode.new(key, val)
+    prev_node = ref_node.send(:prev)
+
+    node.send(:next=, ref_node)
+    node.send(:prev=, prev_node)
+
+    ref_node.send(:prev=, node)
+    prev_node.send(:next=, node)
 
     node
   end

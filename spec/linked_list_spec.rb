@@ -111,6 +111,44 @@ describe LinkedList do
     end
   end
 
+  describe '#add_after_key' do
+    context 'when there is no Node with a given ref key' do
+      it 'raises an error' do
+        expect{ linked_list.add_after_key(1, 2, 'orange') }.to raise_error
+      end
+    end
+
+    context 'when there is a Node with a given ref key' do
+      before(:each) { linked_list.append(1, 'apple') }
+      it 'adds a Node after the ref key' do
+        linked_list.add_after_key(1, 2, 'orange')
+        expect(linked_list.last.send(:val)).to eq('orange')
+      end
+      it 'returns the added node' do
+        expect(linked_list.add_after_key(1, 2, 'orange').send(:val)).to eq('orange')
+      end
+    end
+  end
+
+  describe '#add_before_key' do
+    context 'when there is no Node with a given ref key' do
+      it 'raises an error' do
+        expect{ linked_list.add_before_key(1, 2, 'orange') }.to raise_error
+      end
+    end
+
+    context 'when there is a Node with a given ref key' do
+      before(:each) { linked_list.append(1, 'apple') }
+      it 'adds a Node before the ref key' do
+        linked_list.add_before_key(1, 2, 'orange')
+        expect(linked_list.first.send(:val)).to eq('orange')
+      end
+      it 'returns the added node' do
+        expect(linked_list.add_before_key(1, 2, 'orange').send(:val)).to eq('orange')
+      end
+    end
+  end
+
   describe '#find_by_val' do
     before(:each) do
       linked_list.append(1, 1)
