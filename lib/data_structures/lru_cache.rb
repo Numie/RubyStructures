@@ -62,6 +62,18 @@ class LRUCache
     node
   end
 
+  def add_after_key(ref_key, key, val)
+    node = @linked_list.add_after_key(ref_key, key, val)
+    @hash[key] = node
+    node
+  end
+
+  def add_before_key(ref_key, key, val)
+    node = @linked_list.add_before_key(ref_key, key, val)
+    @hash[key] = node
+    node
+  end
+
   def remove(key)
     node = self.find(key)
     return nil if node.nil?

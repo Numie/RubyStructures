@@ -44,6 +44,35 @@ describe LRUCache do
     end
   end
 
+  describe '#find' do
+    context 'when a key does not exist in the cache' do
+      it 'returns nil' do
+        expect(lru_cache.find(4)).to eq(nil)
+      end
+    end
+
+    context 'when a key does exist in the cache' do
+      it 'returns the correct Node' do
+        node = lru_cache.find(2)
+        expect(node.send(:val)).to eq('apple')
+      end
+    end
+  end
+
+  describe '#include?' do
+    context 'when a key does not exist in the cache' do
+      it 'returns false' do
+        expect(lru_cache.include?(4)).to eq(false)
+      end
+    end
+
+    context 'when a key doe exist in the cache' do
+      it 'returns true' do
+        expect(lru_cache.include?(1)).to eq(true)
+      end
+    end
+  end
+
   describe '#append' do
     context 'when an LRU Cache size is less than its max size' do
       before(:each) do
@@ -102,34 +131,42 @@ describe LRUCache do
     end
   end
 
-  describe '#find' do
-    context 'when a key does not exist in the cache' do
-      it 'returns nil' do
-        expect(lru_cache.find(4)).to eq(nil)
+  describe '#add_after_key' do
+    context 'when there is no Node with a given ref key' do
+      it 'raises an error' do
+        expect{ lru_cache.add_after_key(4, 5, 'orange') }.to raise_error
       end
     end
 
-    context 'when a key does exist in the cache' do
-      it 'returns the correct Node' do
-        node = lru_cache.find(2)
-        expect(node.send(:val)).to eq('apple')
+    context 'when there is a Node with a given ref key' do
+      it 'adds a node after the ref key' do
+        lru_cache.add_after_key(3, 4, 'orange')
+        expect(lru_cache.last.send(:val)).to eq('orange')
+      end
+      it 'returns the added Node' do
+        expect(lru_cache.add_after_key(3, 4, 'orange').send(:val)).to eq('orange')
       end
     end
   end
 
-  describe '#include?' do
-    context 'when a key does not exist in the cache' do
-      it 'returns false' do
-        expect(lru_cache.include?(4)).to eq(false)
+  describe '#add_before_key' do
+    context 'when there is no Node with a given ref key' do
+      it 'raises an error' do
+        expect{ lru_cache.add_before_key(4, 5, 'orange') }.to raise_error
       end
     end
 
-    context 'when a key doe exist in the cache' do
-      it 'returns true' do
-        expect(lru_cache.include?(1)).to eq(true)
+    context 'when there is a Node with a given ref key' do
+      it 'adds a node before the ref key' do
+        lru_cache.add_before_key(1, 4, 'orange')
+        expect(lru_cache.first.send(:val)).to eq('orange')
+      end
+      it 'returns the added Node' do
+        expect(lru_cache.add_before_key(3, 4, 'orange').send(:val)).to eq('orange')
       end
     end
   end
+
 
   describe '#remove' do
     context 'when a key does not exist in teh cache' do

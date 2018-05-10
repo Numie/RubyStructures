@@ -71,21 +71,23 @@ A Linked List is an ordered collection of items, or nodes, where the ordering is
 
 ### Linked List API
 
-1. `##to_a`
-1. `##to_s`
-1. `##inspect`
-1. `##empty?`
-1. `##first`
-1. `##last`
-1. `##append(key, val)`
-1. `##prepend(key, val)`
-1. `##find_by_key(key)`
-1. `##find_by_val(val)`
-1. `##include_key?(key)`
-1. `##include_val?(val)`
-1. `##remove(key)`
-1. `##update(key, new_val)`
-1. `##each(&prc)`
+1. `#to_a`
+1. `#to_s`
+1. `#inspect`
+1. `#empty?`
+1. `#first`
+1. `#last`
+1. `#append(key, val)`
+1. `#prepend(key, val)`
+1. `#add_after_key(ref_key, key, val)`
+1. `#add_before_key(ref_key, key, val)`
+1. `#find_by_key(key)`
+1. `#find_by_val(val)`
+1. `#include_key?(key)`
+1. `#include_val?(val)`
+1. `#remove(key)`
+1. `#update(key, new_val)`
+1. `#each(&prc)`
 
 ## Binary Tree
 
@@ -109,6 +111,8 @@ An LRU Cache is an ordered container that combines a Hash and a Linked List to p
 1. `#last`
 1. `#append(key, val)`
 1. `#prepend(key, val)`
+1. `#add_after_key(ref_key, key, val)`
+1. `#add_before_key(ref_key, key, val)`
 1. `#remove(key)`
 1. `#find(key)`
 1. `#include?(key)`
