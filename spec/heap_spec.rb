@@ -6,13 +6,22 @@ describe Heap do
   let(:empty_heap) { Heap.new }
   before(:each) { heap.instance_variable_set(:@store, [1, 2, 3, 4, 5, 6, 7]) }
 
+  def valid_heap?(heap)
+    heap.send(:store).each_index do |idx|
+      parent_idx = heap.send(:parent_idx, idx)
+      next if parent_idx < 0
+      return false if heap.send(:store)[parent_idx] > heap.send(:store)[idx]
+    end
+    true
+  end
+
   describe '::from_array' do
-    let(:array) { [6, 9, 3, 1, 8, 5] }
+    let(:array) { (1..7).to_a.shuffle }
     it 'converts an array into a Heap' do
       expect(Heap.from_array(array)).to be_a(Heap)
     end
     it 'correctly heapifies the array' do
-      expect(Heap.from_array(array).send(:store)).to eq([1, 6, 3, 9, 8, 5])
+      expect(valid_heap?(Heap.from_array(array))).to eq(true)
     end
   end
 
@@ -48,6 +57,20 @@ describe Heap do
     end
   end
 
+  describe '#insert_multiple' do
+    let(:array) { (1..7).to_a.shuffle }
+    it 'returns a new Heap' do
+      expect(heap.insert_mutliple(array)).to be_a(Heap)
+      expect(heap.insert_mutliple(array)).to_not be(heap)
+    end
+    it 'returns a valid heap' do
+      expect(valid_heap?(heap.insert_mutliple(array))).to eq(true)
+    end
+    it 'combines the heap and array' do
+      expect(heap.insert_mutliple(array).send(:store).length).to eq(14)
+    end
+  end
+
   describe '#extract' do
     context 'when a Heap is empty' do
       it 'returns nil' do
@@ -74,6 +97,23 @@ describe Heap do
       it 'returns the extracted element' do
         expect(heap.extract).to eq(1)
       end
+    end
+  end
+
+  describe '#merge' do
+    let(:heap2) { Heap.new }
+    before(:each) { heap2.instance_variable_set(:@store, (1..7).to_a.shuffle) }
+    let(:merged_heap) { heap.merge(heap2) }
+    it 'returns a new Heap' do
+      expect(merged_heap).to be_a(Heap)
+      expect(merged_heap).to_not be(heap)
+      expect(merged_heap).to_not be(heap2)
+    end
+    it 'returns a valid heap' do
+      expect(valid_heap?(merged_heap)).to eq(true)
+    end
+    it 'combines both heaps' do
+      expect(merged_heap.send(:store).length).to eq(14)
     end
   end
 end

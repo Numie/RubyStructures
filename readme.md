@@ -124,6 +124,9 @@ A Heap is a tree-based data structure that always retains access to its minimum 
 
 ### Heap API
 
+1. `::from_array(array)`
 1. `#peek`
 1. `#insert(el)`
+1. `#insert_multiple(array)`
 1. `#extract`
+1. `#merge(other_heap)`

@@ -31,6 +31,11 @@ class Heap
     el
   end
 
+  def insert_mutliple(arr)
+    array = self.send(:store) + arr
+    self.class.from_array(array)
+  end
+
   def extract
     return nil if @store.empty?
     return @store.shift if @store.length <= 2
@@ -44,6 +49,11 @@ class Heap
     heapify_down(el_idx, children_indices) unless children_indices.empty?
 
     head
+  end
+
+  def merge(other_heap)
+    array = self.send(:store) + other_heap.send(:store)
+    self.class.from_array(array)
   end
 
   private
