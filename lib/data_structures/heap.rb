@@ -1,10 +1,22 @@
 class Heap
+  def self.from_array(array)
+    heap = Heap.new
+    heap.instance_variable_set(:@store, array)
+
+    heap.send(:store).length.downto(0).each do |idx|
+      children_indices = heap.send(:children_indices, idx)
+      heap.send(:heapify_down, idx, children_indices) unless children_indices.empty?
+    end
+
+    heap
+  end
+
   def initialize
     @store = []
   end
 
   def peek
-    raise ArgumentError.new('Heap is empty') if @store.empty?
+    return nil if @store.empty?
     @store.first
   end
 
@@ -20,7 +32,7 @@ class Heap
   end
 
   def extract
-    raise ArgumentError.new('Heap is empty') if @store.empty?
+    return nil if @store.empty?
     return @store.shift if @store.length <= 2
 
     @store[0], @store[-1] = @store[-1], @store[0]
@@ -29,7 +41,7 @@ class Heap
     el_idx = 0
     children_indices = children_indices(el_idx)
 
-    heapify_down(el_idx, children_indices)
+    heapify_down(el_idx, children_indices) unless children_indices.empty?
 
     head
   end
@@ -45,7 +57,6 @@ class Heap
   end
 
   def heapify_down(el_idx, children_indices)
-    return if children_indices.empty?
     if children_indices.length == 1
       child_idx = children_indices.first
       if @store[el_idx] > @store[child_idx]
@@ -58,7 +69,7 @@ class Heap
       @store[el_idx], @store[lowest_child_idx] = @store[lowest_child_idx], @store[el_idx]
 
       children_indices = children_indices(lowest_child_idx)
-      heapify_down(lowest_child_idx, children_indices)
+      heapify_down(lowest_child_idx, children_indices) unless children_indices.empty?
     end
   end
 

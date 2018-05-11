@@ -6,10 +6,20 @@ describe Heap do
   let(:empty_heap) { Heap.new }
   before(:each) { heap.instance_variable_set(:@store, [1, 2, 3, 4, 5, 6, 7]) }
 
+  describe '::from_array' do
+    let(:array) { [6, 9, 3, 1, 8, 5] }
+    it 'converts an array into a Heap' do
+      expect(Heap.from_array(array)).to be_a(Heap)
+    end
+    it 'correctly heapifies the array' do
+      expect(Heap.from_array(array).send(:store)).to eq([1, 6, 3, 9, 8, 5])
+    end
+  end
+
   describe '#peek' do
     context 'when a Heap is empty' do
-      it 'raises an error' do
-        expect{ empty_heap.peek }.to raise_error
+      it 'returns nil' do
+        expect(empty_heap.peek).to eq(nil)
       end
     end
 
@@ -40,8 +50,8 @@ describe Heap do
 
   describe '#extract' do
     context 'when a Heap is empty' do
-      it 'raises an error' do
-        expect{ empty_heap.extract }.to raise_error
+      it 'returns nil' do
+        expect(empty_heap.extract).to eq(nil)
       end
     end
     context 'when a Heap is not empty' do

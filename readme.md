@@ -96,7 +96,7 @@ A Binary Tree is a tree in which each Node may have a maximum of two children.
 
 ### Binary Tree API
 
-1. `::from_array`
+1. `::from_array(array)`
 1. `#depth_first_search`
 1. `#breadth_first_search`
 
