@@ -25,6 +25,26 @@ describe Heap do
     end
   end
 
+  describe '#empty?' do
+    context 'when a Heap is empty' do
+      it 'returns true' do
+        expect(empty_heap.empty?).to eq(true)
+      end
+    end
+
+    context 'when a Heap is not empty' do
+      it 'returns false' do
+        expect(heap.empty?).to eq(false)
+      end
+    end
+  end
+
+  describe '#length' do
+    it 'returns the length of a Heap' do
+      expect(heap.length).to eq(7)
+    end
+  end
+
   describe '#peek' do
     context 'when a Heap is empty' do
       it 'returns nil' do
@@ -58,16 +78,25 @@ describe Heap do
   end
 
   describe '#insert_multiple' do
-    let(:array) { (1..7).to_a.shuffle }
-    it 'returns a new Heap' do
-      expect(heap.insert_mutliple(array)).to be_a(Heap)
-      expect(heap.insert_mutliple(array)).to_not be(heap)
+    context 'when a non-Array object is passed' do
+      it 'raises an error' do
+        expect{ heap.insert_mutliple(1) }.to raise_error
+      end
     end
-    it 'returns a valid heap' do
-      expect(valid_heap?(heap.insert_mutliple(array))).to eq(true)
-    end
-    it 'combines the heap and array' do
-      expect(heap.insert_mutliple(array).send(:store).length).to eq(14)
+
+    context 'when an Array is passed' do
+      let(:array) { (1..7).to_a.shuffle }
+      let(:new_heap) { heap.insert_mutliple(array) }
+      it 'returns a new Heap' do
+        expect(new_heap).to be_a(Heap)
+        expect(new_heap).to_not be(heap)
+      end
+      it 'returns a valid heap' do
+        expect(valid_heap?(new_heap)).to eq(true)
+      end
+      it 'combines the heap and array' do
+        expect(new_heap.send(:store).length).to eq(14)
+      end
     end
   end
 
@@ -100,20 +129,62 @@ describe Heap do
     end
   end
 
+  describe '#find' do
+    context 'when a Heap is empty' do
+      it 'returns nil' do
+        expect(empty_heap.find(1)).to eq(nil)
+      end
+    end
+
+    context 'when a Heap does not include an element' do
+      it 'returns nil' do
+        expect(heap.find(0)).to eq(nil)
+        expect(heap.find(8)).to eq(nil)
+      end
+    end
+
+    context 'when a Heap does include an element' do
+      it 'returns the element' do
+        expect(heap.find(7)).to eq(7)
+      end
+    end
+  end
+
+  describe '#include?' do
+    context 'when a Heap does not include an element' do
+      it 'returns false' do
+        expect(heap.include?(8)).to eq(false)
+      end
+    end
+
+    context 'when a Heap does include an element' do
+      it 'returns true' do
+        expect(heap.include?(7)).to eq(true)
+      end
+    end
+  end
+
   describe '#merge' do
     let(:heap2) { Heap.new }
     before(:each) { heap2.instance_variable_set(:@store, (1..7).to_a.shuffle) }
     let(:merged_heap) { heap.merge(heap2) }
-    it 'returns a new Heap' do
-      expect(merged_heap).to be_a(Heap)
-      expect(merged_heap).to_not be(heap)
-      expect(merged_heap).to_not be(heap2)
+    context 'when a non-Heap object is passed' do
+      it 'raises an error' do
+        expect{ heap.merge([]) }.to raise_error
+      end
     end
-    it 'returns a valid heap' do
-      expect(valid_heap?(merged_heap)).to eq(true)
-    end
-    it 'combines both heaps' do
-      expect(merged_heap.send(:store).length).to eq(14)
+    context 'when a Heap is passed' do
+      it 'returns a new Heap' do
+        expect(merged_heap).to be_a(Heap)
+        expect(merged_heap).to_not be(heap)
+        expect(merged_heap).to_not be(heap2)
+      end
+      it 'returns a valid heap' do
+        expect(valid_heap?(merged_heap)).to eq(true)
+      end
+      it 'combines both heaps' do
+        expect(merged_heap.send(:store).length).to eq(14)
+      end
     end
   end
 end

@@ -37,8 +37,6 @@ A Stack is a LIFO (last in, first out) container.
 ### Stack API
 
 1. `#to_a`
-1. `#to_s`
-1. `#inspect`
 1. `#==`
 1. `#empty?`
 1. `#push(el)`
@@ -55,8 +53,6 @@ A Queue is a FIFO (first in, first out) container.
 ### Queue API
 
 1. `#to_a`
-1. `#to_s`
-1. `#inspect`
 1. `#==`
 1. `#empty?`
 1. `#enqueue(el)`
@@ -73,8 +69,6 @@ A Linked List is an ordered collection of items, or nodes, where the ordering is
 ### Linked List API
 
 1. `#to_a`
-1. `#to_s`
-1. `#inspect`
 1. `#empty?`
 1. `#first`
 1. `#last`
@@ -120,13 +114,17 @@ An LRU Cache is an ordered container that combines a Hash and a Linked List to p
 
 ## Heap
 
-A Heap is a tree-based data structure that always retains access to its minimum or maximum value. Ruby Structures currently supports a Min Heap.
+A Heap is a tree-based data structure that adheres to the Heap principle. Ruby Structures implements a Min Heap, which means that each parent element in the heap is of lesser value than each of its child elements. A Min Heap always has access to its minimum element.
 
 ### Heap API
 
 1. `::from_array(array)`
+1. `#empty?`
+1. `#length`
 1. `#peek`
 1. `#insert(el)`
 1. `#insert_multiple(array)`
 1. `#extract`
+1. `#find(el)`
+1. `#include?(el)`
 1. `#merge(other_heap)`

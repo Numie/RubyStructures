@@ -11,6 +11,22 @@ class Heap
     heap
   end
 
+  def to_s
+    "Heap: head=#{self.peek || 'nil'}, length=#{self.length}"
+  end
+
+  def inspect
+    "Heap: head=#{self.peek || 'nil'}, length=#{self.length}"
+  end
+
+  def empty?
+    @store.empty?
+  end
+
+  def length
+    @store.length
+  end
+
   def initialize
     @store = []
   end
@@ -32,6 +48,7 @@ class Heap
   end
 
   def insert_mutliple(arr)
+    raise ArgumentError.new("Can only insert multiple elements via an Array. You passed a #{arr.class}.") unless arr.is_a?(Array)
     array = self.send(:store) + arr
     self.class.from_array(array)
   end
@@ -51,7 +68,18 @@ class Heap
     head
   end
 
+  def find(el)
+    return nil if @store.empty? || el < @store.first
+    @store.each { |store_el| return store_el if store_el == el }
+    nil
+  end
+
+  def include?(el)
+    @store.include?(el)
+  end
+
   def merge(other_heap)
+    raise ArgumentError.new("May only merge with a Heap. You passed a #{other_heap.class}.") unless other_heap.is_a?(Heap)
     array = self.send(:store) + other_heap.send(:store)
     self.class.from_array(array)
   end
