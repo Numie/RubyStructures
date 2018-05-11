@@ -53,6 +53,23 @@ describe LinkedList do
     end
   end
 
+  describe '#length' do
+    context 'when a Linked List is empty' do
+      it 'returns 0' do
+        expect(linked_list.length).to eq(0)
+      end
+    end
+
+    context 'when a Linked List is not empty' do
+      it 'returns the length of the Linked List' do
+        linked_list.append(1, 1)
+        linked_list.append(2, 'apple')
+        linked_list.append(3, 2)
+        expect(linked_list.length).to eq(3)
+      end
+    end
+  end
+
   describe '#first' do
     context 'when Linked List is empty' do
       it 'returns nil' do

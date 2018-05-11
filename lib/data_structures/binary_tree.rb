@@ -26,12 +26,22 @@ class BinaryTree
     @leaves = []
   end
 
-  def depth_first_search(target=nil, &prc)
+  def depth_first_search(target=nil, start_node=nil, &prc)
     raise ArgumentError.new('Must pass either a target value or a block') unless (target || prc) && !(target && prc)
     prc ||= Proc.new { |node| node.send(:val) == target }
 
     return nil if @head.nil?
-    @head.send(:depth_first_search, &prc)
+    start_node ||= @head
+
+    return start_node if prc.call(start_node)
+
+    [start_node.send(:left_child), start_node.send(:right_child)].each do |child|
+      next if child.nil?
+      result = depth_first_search(nil, child, &prc)
+      return result unless result.nil?
+    end
+
+    nil
   end
 
   def breadth_first_search(target=nil, &prc)
@@ -72,18 +82,6 @@ class BinaryTreeNode
   end
 
   private
-
-  def depth_first_search(&prc)
-    return self if prc.call(self)
-
-    [@left_child, @right_child].each do |child|
-      next if child.nil?
-      result = child.send(:depth_first_search, &prc)
-      return result unless result.nil?
-    end
-
-    nil
-  end
 
   attr_accessor :val, :parent, :left_child, :right_child
 end

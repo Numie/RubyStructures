@@ -16,6 +16,12 @@ describe LRUCache do
     end
   end
 
+  describe '#length' do
+    it 'returns the size of an LRU Cache' do
+      expect(lru_cache.length).to eq(3)
+    end
+  end
+
   describe '#empty?' do
     context 'when an LRU Cache is empty' do
       it 'returns true' do

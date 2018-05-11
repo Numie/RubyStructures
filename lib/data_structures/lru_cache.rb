@@ -12,8 +12,20 @@ class LRUCache
     @linked_list.to_a
   end
 
+  def to_s
+    @linked_list.to_s
+  end
+
+  def inspect
+    @linked_list.inspect
+  end
+
   def empty?
     @size == 0
+  end
+
+  def length
+    @size
   end
 
   def first

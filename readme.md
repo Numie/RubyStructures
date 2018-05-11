@@ -70,6 +70,7 @@ A Linked List is an ordered collection of items, or nodes, where the ordering is
 
 1. `#to_a`
 1. `#empty?`
+1. `#length`
 1. `#first`
 1. `#last`
 1. `#append(key, val)`
@@ -102,6 +103,7 @@ An LRU Cache is an ordered container that combines a Hash and a Linked List to p
 
 1. `#to_a`
 1. `#empty?`
+1. `#length`
 1. `#first`
 1. `#last`
 1. `#append(key, val)`

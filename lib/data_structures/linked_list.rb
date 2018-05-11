@@ -30,6 +30,17 @@ class LinkedList
     @head.send(:next) == @tail
   end
 
+  def length
+    return 0 if self.empty?
+    count = 0
+    node = self.first
+    until node == @tail
+      count += 1
+      node = node.send(:next)
+    end
+    count
+  end
+
   def first
     first = @head.send(:next)
     first == @tail ? nil : first
