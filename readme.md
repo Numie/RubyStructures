@@ -101,7 +101,7 @@ A Binary Tree is a tree in which each Node may have a maximum of two children.
 
 ## LRU Cache
 
-An LRU Cache is an ordered container that combines a Hash and a Linked List to provide addition, deleting and inclusion methods in constant time.
+An LRU Cache is an ordered container that combines a Hash and a Linked List to provide insertion, deletion and inclusion methods in constant time.
 
 ### LRU Cache API
 

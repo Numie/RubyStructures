@@ -8,7 +8,7 @@ class Heap
     @store.first
   end
 
-  def push(el)
+  def insert(el)
     @store << el
 
     el_idx = @store.length - 1
@@ -19,7 +19,7 @@ class Heap
     el
   end
 
-  def pop
+  def extract
     raise ArgumentError.new('Heap is empty') if @store.empty?
     return @store.shift if @store.length <= 2
 
