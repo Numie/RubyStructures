@@ -37,9 +37,7 @@ class LRUCache
     @hash[key] = node
 
     if @size == @max_size
-      first_node_key = @linked_list.first.send(:key)
-      @linked_list.remove(first_node_key)
-      @hash.delete(first_node_key)
+      remove_node(:first)
     else
       @size += 1
     end
@@ -52,9 +50,7 @@ class LRUCache
     @hash[key] = node
 
     if @size == @max_size
-      last_node_key = @linked_list.last.send(:key)
-      @linked_list.remove(last_node_key)
-      @hash.delete(last_node_key)
+      remove_node(:last)
     else
       @size += 1
     end
@@ -67,9 +63,7 @@ class LRUCache
     @hash[key] = node
 
     if @size == @max_size
-      first_node_key = @linked_list.first.send(:key)
-      @linked_list.remove(first_node_key)
-      @hash.delete(first_node_key)
+      remove_node(:first)
     else
       @size += 1
     end
@@ -82,9 +76,7 @@ class LRUCache
     @hash[key] = node
 
     if @size == @max_size
-      last_node_key = @linked_list.last.send(:key)
-      @linked_list.remove(last_node_key)
-      @hash.delete(last_node_key)
+      remove_node(:last)
     else
       @size += 1
     end
@@ -104,6 +96,12 @@ class LRUCache
   end
 
   private
+
+  def remove_node(position)
+    node_key = @linked_list.send(position).send(:key)
+    @linked_list.remove(node_key)
+    @hash.delete(node_key)
+  end
 
   attr_accessor :max_size, :size
   attr_reader :hash, :linked_list
