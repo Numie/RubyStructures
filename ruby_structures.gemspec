@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name        = 'ruby_structures'
-  spec.version     = '2.2.0'
-  spec.date        = '2018-05-10'
+  spec.version     = '2.3.0'
+  spec.date        = '2018-05-11'
   spec.summary     = "Ruby Data Structures"
   spec.description = "Ruby implementations of a Stack, Queue, Linked List, Binary Tree, LRU Cache and Heap. More to come!"
   spec.authors     = ["Jason Numeroff"]
