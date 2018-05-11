@@ -1,9 +1,9 @@
 Gem::Specification.new do |spec|
   spec.name        = 'ruby_structures'
-  spec.version     = '2.1.0'
-  spec.date        = '2018-05-09'
+  spec.version     = '2.2.0'
+  spec.date        = '2018-05-10'
   spec.summary     = "Ruby Data Structures"
-  spec.description = "Ruby implementations of a Stack, Queue, Linked List, Binary Tree and LRU Cache. More to come!"
+  spec.description = "Ruby implementations of a Stack, Queue, Linked List, Binary Tree, LRU Cache and Heap. More to come!"
   spec.authors     = ["Jason Numeroff"]
   spec.email       = 'jnumeroff@hotmail.com'
   spec.files       = [
@@ -12,7 +12,8 @@ Gem::Specification.new do |spec|
                       "lib/data_structures/queue.rb",
                       "lib/data_structures/linked_list.rb",
                       "lib/data_structures/binary_tree.rb",
-                      "lib/data_structures/lru_cache.rb"
+                      "lib/data_structures/lru_cache.rb",
+                      "lib/data_structures/heap.rb"
                     ]
   spec.homepage    = 'https://github.com/Numie/RubyStructures'
   spec.license     = 'MIT'

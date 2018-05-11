@@ -26,6 +26,7 @@ require 'ruby_structures'
 * Linked List
 * Binary Tree
 * LRU Cache
+* Heap
 
 More to come...
 
@@ -116,3 +117,13 @@ An LRU Cache is an ordered container that combines a Hash and a Linked List to p
 1. `#remove(key)`
 1. `#find(key)`
 1. `#include?(key)`
+
+## Heap
+
+A Heap is a tree-based data structure that always retains access to its minimum or maximum value. Ruby Structures currently supports a Min Heap.
+
+### Heap API
+
+1. `#peek`
+1. `#insert(el)`
+1. `#extract`
