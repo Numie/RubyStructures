@@ -27,6 +27,7 @@ require 'ruby_structures'
 * Binary Tree
 * LRU Cache
 * Heap
+* Priority Queue
 
 More to come...
 
@@ -130,3 +131,20 @@ A Heap is a tree-based data structure that adheres to the Heap principle. Ruby S
 1. `#find(el)`
 1. `#include?(el)`
 1. `#merge(other_heap)`
+
+## Priority Queue
+
+A Priority Queue is a specialized queue where each element has a 'priority' attribute. A Priority Queue always has access to its highest priority element.
+
+### Priority Queue API
+
+1. `::from_array(array)`
+1. `::from_hash(hash)`
+1. `#empty?`
+1. `#length`
+1. `#peek`
+1. `#insert(data, priority)`
+1. `#extract`
+1. `#find(data)`
+1. `#include?(data)`
+1. `#merge(other_queue)`

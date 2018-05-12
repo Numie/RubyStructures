@@ -13,16 +13,36 @@ class PriorityQueue < Heap
     from_heap(heap)
   end
 
+  def to_s
+    "Priority Queue: head=#{self.peek || 'nil'}, length=#{self.length}"
+  end
+
+  def inspect
+    "Priority Queue: head=#{self.peek || 'nil'}, length=#{self.length}"
+  end
+
   def insert(data, priority)
     node = PriorityQueueNode.new(data, priority)
     super(node)
+  end
+
+  def find(data)
+    return nil if @store.empty?
+    @store.each { |node| return node if node.send(:data) == data }
+    nil
+  end
+
+  def include?(data)
+    return nil if @store.empty?
+    @store.each { |node| return true if node.send(:data) == data }
+    false
   end
 
   def merge(other_queue)
     raise ArgumentError.new("May only merge with a Priority Queue. You passed a #{other_queue.class}.") unless other_queue.is_a?(PriorityQueue)
     array = self.send(:store) + other_queue.send(:store)
     heap = self.class.superclass.from_array(array)
-    self.class.send(:from_heap(heap))
+    self.class.send(:from_heap, heap)
   end
 
   private
