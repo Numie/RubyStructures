@@ -11,6 +11,10 @@ class Heap
     heap
   end
 
+  def initialize
+    @store = []
+  end
+
   def to_s
     "Heap: head=#{self.peek || 'nil'}, length=#{self.length}"
   end
@@ -25,10 +29,6 @@ class Heap
 
   def length
     @store.length
-  end
-
-  def initialize
-    @store = []
   end
 
   def peek
