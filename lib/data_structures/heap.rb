@@ -15,6 +15,15 @@ class Heap
     @store = []
   end
 
+  def to_a
+    arr = []
+    copy = self.dup
+    until copy.empty?
+      arr << copy.extract
+    end
+    arr
+  end
+
   def to_s
     "Heap: head=#{self.peek || 'nil'}, length=#{self.length}"
   end

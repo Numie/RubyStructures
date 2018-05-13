@@ -25,6 +25,17 @@ describe Heap do
     end
   end
 
+  describe '#to_a' do
+    let(:array) { (1..7).to_a.shuffle }
+    let(:heap2) { Heap.from_array(array) }
+    it 'converts a Heap to an array' do
+      expect(heap2.to_a).to be_a(Array)
+    end
+    it 'produces an array in the correct order' do
+      expect(heap2.to_a).to eq([1, 2, 3, 4, 5, 6, 7])
+    end
+  end
+
   describe '#empty?' do
     context 'when a Heap is empty' do
       it 'returns true' do
