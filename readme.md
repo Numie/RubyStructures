@@ -122,6 +122,7 @@ A Heap is a tree-based data structure that adheres to the Heap principle. Ruby S
 ### Heap API
 
 1. `::from_array(array)`
+1. `#to_a`
 1. `#empty?`
 1. `#length`
 1. `#peek`
@@ -140,6 +141,7 @@ A Priority Queue is a specialized queue where each element has a 'priority' attr
 
 1. `::from_array(array)`
 1. `::from_hash(hash)`
+1. `#to_a`
 1. `#empty?`
 1. `#length`
 1. `#peek`

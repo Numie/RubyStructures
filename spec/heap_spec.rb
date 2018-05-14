@@ -34,6 +34,10 @@ describe Heap do
     it 'produces an array in the correct order' do
       expect(heap2.to_a).to eq([1, 2, 3, 4, 5, 6, 7])
     end
+    it 'preserves the original Heap' do
+      heap2.to_a
+      expect(heap2.send(:store).length).to eq(7)
+    end
   end
 
   describe '#empty?' do

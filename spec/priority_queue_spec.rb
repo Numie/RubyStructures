@@ -42,6 +42,22 @@ describe PriorityQueue do
     end
   end
 
+  describe '#to_a' do
+    let(:array) { [['apple', 1], ['orange', 2], ['banana', 3], ['pear', 4], ['kiwi', 5], ['mango', 6], ['grapefruit', 7]].shuffle }
+    let(:queue2) { PriorityQueue.from_array(array) }
+    it 'converts a Queue to an array' do
+      expect(queue2.to_a).to be_a(Array)
+    end
+    it 'produces an array in the correct order' do
+      expect(queue2.to_a.first.send(:data)).to eq('apple')
+      expect(queue2.to_a.last.send(:data)).to eq('grapefruit')
+    end
+    it 'preserves the original Queue' do
+      queue2.to_a
+      expect(queue2.send(:store).length).to eq(7)
+    end
+  end
+
   describe '#empty?' do
     context 'when a PriorityQueue is empty' do
       it 'returns true' do

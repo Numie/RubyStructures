@@ -18,6 +18,7 @@ class Heap
   def to_a
     arr = []
     copy = self.dup
+    copy.instance_variable_set(:@store, @store.dup)
     until copy.empty?
       arr << copy.extract
     end
