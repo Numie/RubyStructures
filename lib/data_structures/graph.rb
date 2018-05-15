@@ -33,6 +33,17 @@ class Graph
     @adjacency_list[id2].delete(id1)
   end
 
+  def adjacent?(id1, id2)
+    raise RuntimeError.new("#{id1} is not a Vertex") unless @adjacency_list.include?(id1)
+    raise RuntimeError.new("#{id2} is not a Vertex") unless @adjacency_list.include?(id2)
+    @adjacency_list[id1].include?(id2)
+  end
+
+  def adjacent_vertices(id)
+    raise RuntimeError.new("#{id} is not a Vertex") unless @adjacency_list.include?(id)
+    @adjacency_list[id]
+  end
+
   def depth_first_search(target_id, start_id=nil)
     @memo = Set.new unless start_id
     @memo ||= Set.new
