@@ -5,20 +5,30 @@ class Graph
     @adjacency_list = Hash.new { |h, k| h[k] = Set.new }
   end
 
+  def [](id)
+    @adjacency_list[id]
+  end
+
   def add_vertex(id)
+    raise RuntimeError.new("#{id} is already a Vertex") if @adjacency_list.include?(id)
     @adjacency_list[id]
   end
 
   def delete_vertex(id)
+    raise RuntimeError.new("#{id} is not a Vertex") unless @adjacency_list.include?(id)
     @adjacency_list.delete(id)
   end
 
   def create_edge(id1, id2)
+    raise RuntimeError.new("#{id1} is not a Vertex") unless @adjacency_list.include?(id1)
+    raise RuntimeError.new("#{id2} is not a Vertex") unless @adjacency_list.include?(id2)
     @adjacency_list[id1].add(id2)
     @adjacency_list[id2].add(id1)
   end
 
   def delete_edge(id1, id2)
+    raise RuntimeError.new("#{id1} is not a Vertex") unless @adjacency_list.include?(id1)
+    raise RuntimeError.new("#{id1} is not connected to #{id2}") unless @adjacency_list[id1].include?(id2)
     @adjacency_list[id1].delete(id2)
     @adjacency_list[id2].delete(id1)
   end
