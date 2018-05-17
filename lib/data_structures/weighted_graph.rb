@@ -3,6 +3,10 @@ class WeightedGraph
     @adjacency_list = Hash.new { |h, k| h[k] = {} }
   end
 
+  def [](id)
+    @adjacency_list[id]
+  end
+
   def add_vertex(id)
     @adjacency_list[id]
   end

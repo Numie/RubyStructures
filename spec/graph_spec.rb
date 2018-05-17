@@ -4,6 +4,16 @@ require 'data_structures/graph'
 describe Graph do
   let(:graph) { Graph.new }
 
+  describe '#initialize' do
+    it 'initializes its adjacency list to an empty Hash' do
+      expect(graph.instance_variable_get(:@adjacency_list).empty?).to eq(true)
+      expect(graph.instance_variable_get(:@adjacency_list)).to be_a(Hash)
+    end
+    it 'sets the default adjacency list value to a Set' do
+      expect(graph[1]).to be_a(Set)
+    end
+  end
+
   describe '#add_vertex' do
     context 'when a Graph already contains a vertex' do
       it 'raises an error' do
