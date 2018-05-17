@@ -177,6 +177,13 @@ describe Graph do
       end
     end
 
+    context 'when a start vertex is provided' do
+      it 'traverses the Graph beginning with the start vertex' do
+        graph.depth_first_search(4, 2)
+        expect(graph.instance_variable_get(:@memo)).to eq(Set.new([2, 1, 3, 4]))
+      end
+    end
+
     context 'when a Graph does not contain a target id' do
       it 'returns false' do
         expect(graph.depth_first_search(5)).to eq(false)
