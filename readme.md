@@ -159,14 +159,14 @@ A Graph is a set of vertices and a set vertex pairs, or edges, that connect vert
 
 ### Graph & Directed Graph API
 
-1. `add_vertex(id)`
-1. `delete_vertex(id)`
-1. `create_edge(id1, id2)`
-1. `delete_edge(id1, id2)`
-1. `adjacent?(id1, id2)`
-1. `adjacent_vertices(id)`
-1. `depth_first_search(target_id, start_id, &prc)`
-1. `breadth_first_search(target_id, start_id, &prc)`
+1. `#add_vertex(id)`
+1. `#delete_vertex(id)`
+1. `#create_edge(id1, id2)`
+1. `#delete_edge(id1, id2)`
+1. `#adjacent?(id1, id2)`
+1. `#adjacent_vertices(id)`
+1. `#depth_first_search(target_id, start_id, &prc)`
+1. `#breadth_first_search(target_id, start_id, &prc)`
 
 ## Weighted Graph
 
@@ -174,11 +174,11 @@ A Weighted Graph is a Graph in which each edge is assigned a weight. Ruby Struct
 
 ### Weighted Graph & Weighted Directed Graph API
 
-1. `add_vertex(id)`
-1. `delete_vertex(id)`
-1. `create_edge(id1, id2, weight)`
-1. `delete_edge(id1, id2, weight)`
-1. `adjacent?(id1, id2)`
-1. `adjacent_vertices(id)`
-1. `highest_weight_adjacent(id)`
-1. `lowest_weight_adjacent(id)`
+1. `#add_vertex(id)`
+1. `#delete_vertex(id)`
+1. `#create_edge(id1, id2, weight)`
+1. `#delete_edge(id1, id2, weight)`
+1. `#adjacent?(id1, id2)`
+1. `#adjacent_vertices(id)`
+1. `#highest_weight_adjacent(id)`
+1. `#lowest_weight_adjacent(id)`
