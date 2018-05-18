@@ -28,6 +28,8 @@ require 'ruby_structures'
 * LRU Cache
 * Heap
 * Priority Queue
+* Graph
+* Weighted Graph
 
 More to come...
 
@@ -150,3 +152,33 @@ A Priority Queue is a specialized queue where each element has a 'priority' attr
 1. `#find(data)`
 1. `#include?(data)`
 1. `#merge(other_queue)`
+
+## Graph
+
+A Graph is a set of vertices and a set vertex pairs, or edges, that connect vertices to one another. Ruby Structures implements both an Undirected Graph (unordered edge pairs) and a Directed Graph (ordered edge pairs).
+
+### Graph & Directed Graph API
+
+1. `add_vertex(id)`
+1. `delete_vertex(id)`
+1. `create_edge(id1, id2)`
+1. `delete_edge(id1, id2)`
+1. `adjacent?(id1, id2)`
+1. `adjacent_vertices(id)`
+1. `depth_first_search(target_id, start_id, &prc)`
+1. `breadth_first_search(target_id, start_id, &prc)`
+
+## Weighted Graph
+
+A Weighted Graph is a Graph in which each edge is assigned a weight. Ruby Structures implements both the undirected and directed varieties of a Weighted Graph.
+
+### Weighted Graph & Weighted Directed Graph API
+
+1. `add_vertex(id)`
+1. `delete_vertex(id)`
+1. `create_edge(id1, id2, weight)`
+1. `delete_edge(id1, id2, weight)`
+1. `adjacent?(id1, id2)`
+1. `adjacent_vertices(id)`
+1. `highest_weight_adjacent(id)`
+1. `lowest_weight_adjacent(id)`

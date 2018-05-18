@@ -4,3 +4,4 @@
 **Version 2.2.0**: Implement Heap class.
 **Version 2.3.0**: Add additional methods to Heap class.
 **Version 2.4.0**: Add Priority Queue class.
+**Version 2.5.0**: Add Graph, Directed Graph, Weighted Graph, and Weighted Directed Graph classes.
