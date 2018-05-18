@@ -36,7 +36,7 @@ class WeightedGraph
     @adjacency_list[id]
   end
 
-  def heighest_weight_adjacent(id)
+  def highest_weight_adjacent(id)
     adjacent_vertices = self.adjacent_vertices(id)
     return nil if adjacent_vertices.empty?
 
