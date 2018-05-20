@@ -1,6 +1,6 @@
 class Heap
   def self.from_array(array)
-    heap = Heap.new
+    heap = self.new
     heap.instance_variable_set(:@store, array)
 
     heap.send(:store).length.downto(0).each do |idx|

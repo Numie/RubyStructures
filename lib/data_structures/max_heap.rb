@@ -1,4 +1,4 @@
-require 'heap'
+require_relative 'heap'
 
 class MaxHeap < Heap
   def find(el)
